@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import HomeStack from './HomeStack';
 import CalendarEventsScreen from "../screens/Events";
 
