@@ -5,6 +5,7 @@ import HomeScreen from '../screens/Home';
 import FavouritesScreen from '../screens/Favourites';
 
 import type { HomeStackParamList } from './types';
+import { Text, TouchableOpacity } from 'react-native';
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 
@@ -13,7 +14,15 @@ export default function HomeStack() {
     <Stack.Navigator>
       <Stack.Screen 
         name="Home" 
-        component={HomeScreen} 
+        component={HomeScreen}
+        options={({ navigation }) => ({
+          headerTitle: 'Dog Photos',
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("Favourites")}>
+              <Text>Favourites</Text>
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen 
         name="Favourites" 
