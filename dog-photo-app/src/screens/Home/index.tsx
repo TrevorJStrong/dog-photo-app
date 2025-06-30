@@ -28,6 +28,14 @@ const HomeScreen = () => {
       .finally(() => setIsLoading(false));
   }, [breed_id]);
 
+  if (error) {
+    return (
+      <View className="flex-1 items-center justify-center bg-white">
+        <Text className="text-red-500">Unfortunately, the following error has occurred when trying to load the dog photos: {error}</Text>
+      </View>
+    );
+  }
+
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <View className="p-4 w-full">
@@ -37,25 +45,25 @@ const HomeScreen = () => {
           setLimit={setLimit}
         />
       </View>
-      <FlatList
-        data={data ?? []}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({item: dog}: {item: PhotoItem}) => {
-          return <DogListItem dog={dog} />;
-        }}
-        showsVerticalScrollIndicator={false}
-        ListEmptyComponent={
-          <View className="flex-1 items-center mt-40">
-            {isLoading ? (
-              <Text className="text-gray-500 justify-center bg-white">Loading Dog Photos...</Text>
-            ) : error ? (
-              <Text className="text-red-500 justify-center bg-white">The following error has occured when trying to load the dog photos: {error}</Text>
-            ) : (
+      {isLoading ? (
+        <View className="flex-1 items-center justify-center"> 
+          <Text className="text-gray-500 justify-center bg-white">Loading Dog Photos...</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={data ?? []}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({item: dog}: {item: PhotoItem}) => {
+            return <DogListItem dog={dog} />;
+          }}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={
+            <View className="flex-1 items-center mt-40">
               <Text className="text-gray-500 justify-center bg-white">No photos available.</Text>
-            )}
-          </View>
-        }
-      />
+            </View>
+          }
+        />
+      )}
     </View>
   );
 };
