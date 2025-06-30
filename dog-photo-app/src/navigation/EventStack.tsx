@@ -13,12 +13,13 @@ export default function EventsStack() {
     <Stack.Navigator>
       <Stack.Screen 
         name="CalendarEvents" 
-        component={CalendarEventsScreen} 
+        component={CalendarEventsScreen}
+        options={{ headerTitle: 'Calendar Events' }}
       />
       <Stack.Screen 
         name="ViewEvent"
         component={ViewEventModal}
-        options={{ presentation: 'modal' }}
+        options={{ presentation: 'modal', headerTitle: 'Event Details' }}
       />
     </Stack.Navigator>
   );

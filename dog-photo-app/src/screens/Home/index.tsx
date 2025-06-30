@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 
 import DogListItem from "../../components/DogListItem";
-import { FilterDropdown } from "../../components/dropdown/FilterDropdown";
+import { FilterDogBreeds } from "../../components/dropdown/FilterDogBreeds";
 import type { PhotoItem } from "../../types";
 
 const HomeScreen = () => {
@@ -31,7 +31,7 @@ const HomeScreen = () => {
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <View className="p-4 w-full">
-        <FilterDropdown
+        <FilterDogBreeds
           setBreedId={setBreedId}
           breed_id={breed_id}
           setLimit={setLimit}

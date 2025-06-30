@@ -2,9 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeStack from './HomeStack';
-import CalendarEventsScreen from "../screens/Events";
 
 import type { RootTabParamList } from "./types";
+import EventsStack from "./EventStack";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 const BottomTab = () => {
@@ -22,11 +22,10 @@ const BottomTab = () => {
       />
       <Tab.Screen 
         name="CalendarEventsTab" 
-        component={CalendarEventsScreen}
+        component={EventsStack}
         options={{
           tabBarLabel: 'Events',
-          headerShown: true,
-          headerTitle: 'Dog Events',
+          headerTitle: 'Events',
         }}
       />
     </Tab.Navigator>

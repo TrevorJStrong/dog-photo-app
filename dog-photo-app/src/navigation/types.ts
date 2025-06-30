@@ -1,3 +1,5 @@
+import { CalendarEvent } from "../screens/Events/types";
+
 export type HomeStackParamList = {
   Home: undefined;
   Favourites: undefined;
@@ -5,7 +7,7 @@ export type HomeStackParamList = {
 
 export type EventsStackParamList = {
   CalendarEvents: undefined;
-  ViewEvent: undefined;
+  ViewEvent: CalendarEvent;
 };
 
 export type RootTabParamList = {

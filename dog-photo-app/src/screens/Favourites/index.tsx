@@ -1,30 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, Text, FlatList } from "react-native";
 
-import { getLocalStorage } from "../../utils/localStorage";
 import DogListItem from "../../components/DogListItem";
-import { PhotoItem } from "../../types";
+import { useFavourites } from "../../hooks/useFavourites";
+import type { PhotoItem } from "../../types";
 
 const FavouritesScreen = () => {
-  const [favourites, setFavourites] = useState<PhotoItem[]>([]);
+  const { favourites, loading } = useFavourites();
 
-  useEffect(() => {
-    const fetchFavourites = async () => {
-      try {
-        const data = await getLocalStorage("favourites");
-        if (data) {
-          setFavourites(JSON.parse(data));
-        } else {
-          setFavourites([]);
-        }
-      } catch (error) {
-        console.error("Error fetching favourites:", error);
-        setFavourites([]);
-      }
-    };
-
-    fetchFavourites();
-  }, []);
+  if (loading) {
+    return <Text>Loading Favourites...</Text>;
+  }
 
   if (favourites?.length === 0) {
     return (

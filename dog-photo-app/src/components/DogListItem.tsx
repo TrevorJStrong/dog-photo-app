@@ -22,12 +22,21 @@ const DogListItem = ({dog}: { dog: PhotoItem }) => {
     }
 
     if (!favourites.some((fav: any) => fav.id === dog.id)) {
-      const updated = [...favourites, dog];
-      await setLocalStorage("favourites", JSON.stringify(updated));
+      const dogAdded = [...favourites, dog];
+      await setLocalStorage("favourites", JSON.stringify(dogAdded));
       Toast.show({
         type: 'success',
         text1: 'Added to Favourites',
         text2: `${dog.breeds[0]?.name} has been added to your favourites.`,
+        position: 'bottom',
+      });
+    } else {
+      const dogRemoved = favourites.filter((fav: any) => fav.id !== dog.id);
+      await setLocalStorage("favourites", JSON.stringify(dogRemoved));
+      Toast.show({
+        type: 'info',
+        text1: 'Removed from Favourites',
+        text2: `${dog.breeds[0]?.name} has been removed from your favourites.`,
         position: 'bottom',
       });
     }
