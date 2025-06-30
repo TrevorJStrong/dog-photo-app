@@ -24,6 +24,7 @@ const DogListItem = ({dog}: { dog: PhotoItem }) => {
     if (!favourites.some((fav: any) => fav.id === dog.id)) {
       const dogAdded = [...favourites, dog];
       await setLocalStorage("favourites", JSON.stringify(dogAdded));
+      setIsFavourite(true);
       Toast.show({
         type: 'success',
         text1: 'Added to Favourites',
@@ -33,6 +34,7 @@ const DogListItem = ({dog}: { dog: PhotoItem }) => {
     } else {
       const dogRemoved = favourites.filter((fav: any) => fav.id !== dog.id);
       await setLocalStorage("favourites", JSON.stringify(dogRemoved));
+      setIsFavourite(false);
       Toast.show({
         type: 'info',
         text1: 'Removed from Favourites',
